@@ -1,0 +1,28 @@
+#!/bin/bash
+#: Title        : aliases
+#: Description  : 2011-09-11
+#: Author       : "Marc Jacobs" <marcja@gmail.com>
+#: Version      : 1.0
+#: Description  : Contains aliases
+#: Options      : None
+
+echo info: sourcing $HOME/.bash/aliases
+
+##-----------------------------------------------------------------------------
+## aliases
+##-----------------------------------------------------------------------------
+# Directory navigation aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# option overrides
+alias grep='GREP_COLOR="1;33;40" LANG=C grep --color=auto'
+alias la='command ls -a'
+alias ll='command ls -la'
+alias du='command du -hc'
+alias ps='command ps -ax'
+
+# launchers
+alias chrome-tor='open /Applications/Google\ Chrome.app --args --proxy-server="127.0.0.1:8118;https=127.0.0.1:8118;socks=127.0.0.1:8118;sock4=127.0.0.1:8118;sock5=127.0.0.1:8118,ftp=127.0.0.1:8118" --incognito check.torproject.org'

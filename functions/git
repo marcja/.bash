@@ -1,0 +1,14 @@
+#!/bin/sh
+function ..git() {
+  local path=${PWD%/*}
+  until [[ -d "$path/.git" || -z $path ]]
+  do
+    path=${path%/*}
+  done
+  if [[ -d "$path/.git" ]]
+  then
+    cd $path
+  else
+    echo 'could not find a .git repository along parent path'
+  fi
+}
