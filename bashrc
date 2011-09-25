@@ -1,8 +1,6 @@
 #!/bin/bash
 #: Title        : .bashrc
-#: Description  : 2011-09-11
-#: Author       : "Marc Jacobs" <marcja@gmail.com>
-#: Version      : 1.0
+#: Author       : "Marc Jacobs" <bash.git@marcja.com>
 #: Description  : Personal environment file for interactive bash subshells. We
 #                 recommend that you place your aliases, functions, and fancy 
 #                 prompts here.
