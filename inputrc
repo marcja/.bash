@@ -21,6 +21,9 @@ set visible-stats on
 #------------------------------------------------------------------------------ 
 set keymap vi-command
 
+"yn": yank-nth-arg
+"yl": yank-last-arg
+
 #------------------------------------------------------------------------------ 
 # vi-insert
 #------------------------------------------------------------------------------ 
@@ -34,8 +37,6 @@ set keymap vi-insert
 # commands for manipulating the history
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-"\C-,": yank-nth-arg
-"\C-.": yank-last-arg
 
 # commands for killing and yanking
 "\C-k": kill-line
