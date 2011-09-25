@@ -1,0 +1,49 @@
+#: Title        : .inputrc
+#: Author       : "Marc Jacobs" <bash.git@marcja.com>
+#: Description  : Customizes readline
+#: Options      : None
+
+$include /etc/inputrc
+
+set bell-style visible
+set editing-mode vi
+set history-size 500
+set mark-symlinked-directories on
+set match-hidden-files off
+set menu-complete-display-prefix on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set skip-completed-text on
+set visible-stats on
+
+#------------------------------------------------------------------------------ 
+# vi-command
+#------------------------------------------------------------------------------ 
+set keymap vi-command
+
+#------------------------------------------------------------------------------ 
+# vi-insert
+#------------------------------------------------------------------------------ 
+set keymap vi-insert
+
+# commands for moving
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-l": clear-screen
+
+# commands for manipulating the history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\C-,": yank-nth-arg
+"\C-.": yank-last-arg
+
+# commands for killing and yanking
+"\C-k": kill-line
+
+# letting readline type for you
+"\C-n": menu-complete
+"\C-p": menu-complete-backward
+
+$if Bash
+  Space: magic-space
+$endif

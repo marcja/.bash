@@ -13,7 +13,7 @@ echo info: sourcing $HOME/.bash/bashrc
 ##-----------------------------------------------------------------------------
 export CDPATH='.:~/:..:../..:~/.dirlinks'
 export CLICOLOR=1
-export EDITOR="mate -w"
+export EDITOR=vim
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -50,14 +50,14 @@ for file in $HOME/.bash/functions/*; do source $file; done
 ##-----------------------------------------------------------------------------
 ## options
 ##-----------------------------------------------------------------------------
-shopt -s cdspell
 shopt -s cdable_vars
+shopt -s cdspell
 shopt -s checkhash
 shopt -s checkwinsize
-shopt -s no_empty_cmd_completion
 shopt -s cmdhist
-shopt -s histappend histreedit histverify
 shopt -s extglob
+shopt -s histappend histreedit histverify
+shopt -s no_empty_cmd_completion
 
 set bell-style visible
 
