@@ -1,5 +1,5 @@
 #!/bin/bash
-#: Title        : .bashrc
+#: Title        : bashrc
 #: Author       : "Marc Jacobs" <bash.git@marcja.com>
 #: Description  : Personal environment file for interactive bash subshells. We
 #                 recommend that you place your aliases, functions, and fancy 
@@ -33,10 +33,8 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PS1='\u@\h:\W$(__git_ps1 " (%s)")\$ '
 
 if [[ "$OSTYPE" = "linux-gnu" ]]; then
-  echo info: linux-gnu
   export EDITOR=vim
 elif [[ "$OSTYPE" =~ darwin ]]; then
-  echo info: darwin
   export CLICOLOR=1
   export EDITOR="mate -w"
   export LSCOLORS=dxfxcxdxbxegedabagacad
@@ -61,9 +59,16 @@ elif [ -f /usr/local/etc/bash_completion ]; then
   source /usr/local/etc/bash_completion
 fi
 
+# load all completion libraries
+for file in $BASH_HOME/completions/*; do
+  # only load the completion for 'foo' if the executable is on the path
+  which -s ${file##*/} && source $file; 
+done
+
 # load all function libraries
-for file in $BASH_HOME/completions/*; do source $file; done
-for file in $BASH_HOME/functions/*; do source $file; done
+for file in $BASH_HOME/functions/*; do 
+  source $file; 
+done
 
 ##-----------------------------------------------------------------------------
 ## aliases
