@@ -31,6 +31,7 @@ export PATH=$HOME/local/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PS1='\u@\h:\W$(__git_ps1 " (%s)")\$ '
+export WDHOME=$HOME/.wd
 
 if [[ "$OSTYPE" = "linux-gnu" ]]; then
   export EDITOR=vim
@@ -62,7 +63,7 @@ fi
 # load all completion libraries
 for file in $BASH_HOME/completions/*; do
   # only load the completion for 'foo' if the executable is on the path
-  which -s ${file##*/} && source $file; 
+  type -p ${file##*/} &> /dev/null && source $file; 
 done
 
 # load all function libraries
