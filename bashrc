@@ -6,8 +6,6 @@
 #                 prompts here.
 #: Options      : None
 
-echo info: sourcing $BASH_HOMErc
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -21,6 +19,7 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM=auto
+export GPG_TTY=$(tty)
 export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
 export HISTIGNORE="&:la:ls:ll:pwd:exit:clear"
