@@ -1,0 +1,27 @@
+# 2010-11-15 qnex: Simple bash completion for git5:
+__git5_all_commands=
+__git5_compute_all_commands()
+{
+  : ${__git5_all_commands:=$(git5 commands)}
+}
+
+_git5()
+{
+  if [[ "${COMP_CWORD}" -eq 1 ]]; then
+    __git5_compute_all_commands
+    __gitcomp "${__git5_all_commands}"
+    return
+  elif [[ "${COMP_CWORD}" -eq 2 ]]; then
+    case "${COMP_WORDS[1]}" in
+      merge|submit)
+        __gitcomp "$(__git_heads)"
+        ;;
+      help)
+        __gitcomp "${__git5_all_commands}"
+        ;;
+    esac
+  fi
+}
+complete -o bashdefault -o default -o nospace -F _git5 git5 2>/dev/null \
+  || complete -o default -o nospace -F _git5 git5 
+
