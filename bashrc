@@ -6,8 +6,6 @@
 #                 prompts here.
 #: Options      : None
 
-echo info: sourcing $BASH_HOMErc
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -63,7 +61,10 @@ elif [ -f /usr/local/etc/bash_completion ]; then
 fi
 
 # load all function libraries
-for file in $BASH_HOME/completions/*; do source $file; done
+for file in $BASH_HOME/completions/*; do
+  which -s ${file##*/} && source $file; 
+done
+
 for file in $BASH_HOME/functions/*; do source $file; done
 
 ##-----------------------------------------------------------------------------

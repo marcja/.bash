@@ -6,7 +6,7 @@
 #: Description  : Contains aliases
 #: Options      : None
 
-echo info: sourcing $HOME/.bash_aliases
+echo info: sourcing $BASH_HOME/aliases
 
 ##-----------------------------------------------------------------------------
 ## aliases
@@ -18,8 +18,13 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # option overrides
-alias grep='GREP_COLOR="1;33;40" LANG=C grep --color=auto'
-alias ls='ls -bhv --color=auto --file-type --group-directories-first'
+if [[ "$OSTYPE" = "linux-gnu" ]]; then
+  alias grep='GREP_COLOR="1;33;40" LANG=C grep --color=auto'
+  alias ls='ls -bhv --color=auto --file-type --group-directories-first'
+elif [[ "$OSTYPE" =~ darwin ]]; then
+  alias ls='ls -bhvG'
+fi
+
 alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -Al'
