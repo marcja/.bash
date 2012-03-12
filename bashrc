@@ -14,11 +14,6 @@
 ##-----------------------------------------------------------------------------
 export BASH_HOME=$HOME/.bash
 export CDPATH='.:~/:..:../..:~/.dirlinks'
-export GIT_CEILING_DIRECTORIES=/home
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWSTASHSTATE=true
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM=auto
 export GPG_TTY=$(tty)
 export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
@@ -31,29 +26,31 @@ export PATH=$HOME/local/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PS1='\u@\h:\W$(__git_ps1 " (%s)")\$ '
+
+# git
+export GIT_CEILING_DIRECTORIES=/home
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWUPSTREAM=auto
+
+# wd
 export WDHOME=$HOME/.wd
 
 if [[ "$OSTYPE" = "linux-gnu" ]]; then
   export EDITOR=vim
 elif [[ "$OSTYPE" =~ darwin ]]; then
   export CLICOLOR=1
-  export EDITOR="mate -w"
+  export EDITOR='mate -w'
   export LSCOLORS=dxfxcxdxbxegedabagacad
   export TERM=xterm-color
 fi
 
-# perforce
-export P4CONFIG=.p4config
-export P4DIFF=/home/build/public/google/tools/p4diff
-export P4MERGE=/home/build/public/eng/perforce/mergep4.tcl
-export P4EDITOR=$EDITOR
-
-# google
-export GOOGLE_USE_CORP_SSL_AGENT=true
-
 ##-----------------------------------------------------------------------------
 ## sources
 ##-----------------------------------------------------------------------------
+[ -f $BASH_HOME/bashrc.goog ] && source $BASH_HOME/bashrc.goog
+
 if [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 elif [ -f /usr/local/etc/bash_completion ]; then
@@ -97,3 +94,6 @@ export LESS="-QR"
 export LESS_TERMCAP_so="$(printf 'rev\nbold\nsetaf 3\n' | tput -S)"
 export LESS_TERMCAP_se="$(tput sgr0)"
 
+function title {
+echo -en "\033]2;$@\007"
+}
