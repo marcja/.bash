@@ -1,0 +1,2 @@
+complete -F _blaze::complete_build_target_wrapper -o nospace bb
+complete -F _blaze::complete_test_target_wrapper -o nospace bt
