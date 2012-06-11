@@ -14,34 +14,35 @@
 ##-----------------------------------------------------------------------------
 export BASH_HOME=$HOME/.bash
 export CDPATH='.:~/:..:../..:~/.dirlinks'
+export EDITOR=vim
 export GPG_TTY=$(tty)
 export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
-export HISTIGNORE="&:la:ls:ll:pwd:exit:clear"
+export HISTIGNORE='&:la:ls:ll:lla:pwd:exit:clear:history:h:hh:hhh'
 export HISTSIZE=10000
+export HISTTIMEFORMAT="[%m-%d|%H:%M] "
 export LESS='-erX'
 export LS_OPTIONS='--color=auto'
 export PAGER=less
-export PATH=$HOME/local/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PS1='\u@\h:\W$(__git_ps1 " (%s)")\$ '
+export PATH=$HOME/local/bin:$PATH
+export PS1="\033[38;05;243m[\$(if [ \$? -eq 0 ]; then echo '\!'; else echo -en '\033[38;05;9m\!\033[38;05;243m'; fi)|\D{%m-%d|%H:%M}] \w \033[38;05;192m\$(__git_ps1 '(%s)')\n\033[0m\u@\h\$ "
 
 # git
-export GIT_CEILING_DIRECTORIES=/home
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWSTASHSTATE=true
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM=auto
+export GIT_CEILING_DIRECTORIES=$HOME
+#export GIT_PS1_SHOWDIRTYSTATE=true
+#export GIT_PS1_SHOWSTASHSTATE=true
+#export GIT_PS1_SHOWUNTRACKEDFILES=true
+#export GIT_PS1_SHOWUPSTREAM=auto
 
 # wd
 export WDHOME=$HOME/.wd
 
 if [[ "$OSTYPE" = "linux-gnu" ]]; then
-  export EDITOR=vim
+  [[ "${TERM}" == "xterm" ]] && export TERM=xterm-256color
 elif [[ "$OSTYPE" =~ darwin ]]; then
   export CLICOLOR=1
-  export EDITOR='mate -w'
   export LSCOLORS=dxfxcxdxbxegedabagacad
   export TERM=xterm-color
 fi
