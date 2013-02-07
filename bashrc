@@ -27,6 +27,7 @@ export PAGER=less
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/opt/bin:$PATH
 export PS1="\033[38;05;243m[\$(if [ \$? -eq 0 ]; then echo '\!'; else echo -en '\033[38;05;9m\!\033[38;05;243m'; fi)|\D{%m-%d|%H:%M}] \w \033[38;05;192m\$(__git_ps1 '(%s)')\n\033[0m\u@\h\$ "
 
 # git
@@ -98,3 +99,5 @@ export LESS_TERMCAP_se="$(tput sgr0)"
 function title {
 echo -en "\033]2;$@\007"
 }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
