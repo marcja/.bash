@@ -28,7 +28,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/opt/bin:$PATH
-export PS1="\033[38;05;243m[\$(if [ \$? -eq 0 ]; then echo '\!'; else echo -en '\033[38;05;9m\!\033[38;05;243m'; fi)|\D{%m-%d|%H:%M}] \w \033[38;05;192m\$(__git_ps1 '(%s)')\n\033[0m\u@\h\$ "
+export PS1="\[\033[38;05;243m\][\$(if [ \$? -eq 0 ]; then echo '\!'; else echo -en '\[\033[38;05;9m\]\!\[\033[38;05;243m\]'; fi)|\D{%m-%d|%H:%M}] \w \[\033[38;05;192m\]\$(__git_ps1 '(%s)')\n\[\033[0m\]\u@\h\$ "
 
 # git
 export GIT_CEILING_DIRECTORIES=$HOME
@@ -51,6 +51,15 @@ fi
 ##-----------------------------------------------------------------------------
 ## sources
 ##-----------------------------------------------------------------------------
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# Load NVM
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+
+# Load work-related
 [ -f $BASH_HOME/bashrc.goog ] && source $BASH_HOME/bashrc.goog
 
 if [ -f /etc/bash_completion ]; then
@@ -97,7 +106,6 @@ export LESS_TERMCAP_so="$(printf 'rev\nbold\nsetaf 3\n' | tput -S)"
 export LESS_TERMCAP_se="$(tput sgr0)"
 
 function title {
-echo -en "\033]2;$@\007"
+  echo -en "\033]2;$@\007"
 }
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
