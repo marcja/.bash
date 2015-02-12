@@ -26,10 +26,8 @@ export LS_OPTIONS='--color=auto'
 export PAGER=less
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/local/bin:$PATH
-export PATH=$HOME/opt/bin:$PATH
-export PATH=$HOME/.brew/bin:$PATH
-export PATH=$HOME/.brew/share/npm/bin:$PATH
+export PATH=$HOME/.bin:$PATH
+export PATH=$HOME/.vim/macros:$PATH
 export PS1="\[\033[38;05;243m\][\$(if [ \$? -eq 0 ]; then echo '\!'; else echo -en '\[\033[38;05;9m\]\!\[\033[38;05;243m\]'; fi)|\D{%m-%d|%H:%M}] \w \[\033[38;05;192m\]\$(__git_ps1 '(%s)')\n\[\033[0m\]\u@\h\$ "
 
 # git
@@ -39,31 +37,23 @@ export GIT_CEILING_DIRECTORIES=$HOME
 #export GIT_PS1_SHOWUNTRACKEDFILES=true
 #export GIT_PS1_SHOWUPSTREAM=auto
 
+# vidir
+export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
+
 # wd
 export WDHOME=$HOME/.wd
 
 if [[ "$OSTYPE" = "linux-gnu" ]]; then
   [[ "${TERM}" == "xterm" ]] && export TERM=xterm-256color
 elif [[ "$OSTYPE" =~ darwin ]]; then
-  export CLICOLOR=1
+  export CLICOLOR=YES
   export LSCOLORS=dxfxcxdxbxegedabagacad
-  export TERM=xterm-color
+  export TERM=xterm-256color
 fi
 
 ##-----------------------------------------------------------------------------
 ## sources
 ##-----------------------------------------------------------------------------
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Load NVM
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
-
-# Load work-related
-[ -f $BASH_HOME/bashrc.goog ] && source $BASH_HOME/bashrc.goog
-
 if [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 elif [ -f /usr/local/etc/bash_completion ]; then
@@ -111,3 +101,14 @@ function title {
   echo -en "\033]2;$@\007"
 }
 
+##-----------------------------------------------------------------------------
+## gcloud
+##-----------------------------------------------------------------------------
+# 
+# The next line updates PATH for the Google Cloud SDK.
+source ~/google-cloud-sdk/path.bash.inc
+
+# The next line enables bash completion for gcloud.
+source ~/google-cloud-sdk/completion.bash.inc
+
+export PYTHONPATH=~/google-cloud-sdk/lib:$PYTHONPATH
